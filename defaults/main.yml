@@ -60,3 +60,6 @@ jenkins_proxy_noproxy:
 
 jenkins_init_folder: "/etc/systemd/system/jenkins.service.d"
 jenkins_init_file: "{{ jenkins_init_folder }}/override.conf"
+
+jenkins_azure_storage_account: ""
+jenkins_azure_storage_container: ""
