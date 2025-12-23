@@ -23,14 +23,13 @@
   tags: ['skip_ansible_lint']
 
 - name: Download specific Jenkins version.
-  when: jenkins_azure_storage_account == ""
+  when: jenkins_version is defined and jenkins_azure_storage_account == ""
   get_url:
     url: "{{ jenkins_pkg_url }}/jenkins_{{ jenkins_version }}_all.deb"
     dest: "/tmp/jenkins_{{ jenkins_version }}_all.deb"
-  when: jenkins_version is defined
 
 - name: Download specific Jenkins version from cache.
-  when: jenkins_azure_storage_account != ""
+  when: jenkins_version is defined and jenkins_azure_storage_account != ""
   azure_storage_blob:
     url: https://{{ jenkins_azure_storage_account }}.blob.core.windows.net/{{ jenkins_azure_storage_container }}/jenkins_{{ jenkins_version }}_all.deb
     dest: "/tmp/jenkins_{{ jenkins_version }}_all.deb"
